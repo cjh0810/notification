@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://i.pinimg.com/originals/62/0c/0c/620c0c2a56c5cdb2e3ff02ebf4f3124c.jpg') no-repeat center center fixed;
+      background: url('https://images.unsplash.com/photo-1520975922203-0299905b41e9?auto=format&fit=crop&w=1080&q=80') no-repeat center center fixed;
       background-size: cover;
       font-family: "Comic Sans MS", "Arial", sans-serif;
       text-align: center;
@@ -111,13 +111,14 @@
 
   <img class="gif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cute cat gif" />
 
-  <div id="popup">考虑我一下，我也很抢手的！❤️</div>
+  <div id="popup">你点的是爱心，我收到的是心动！</div>
 
   <div class="footer">🐾 页面制作 by 你的神秘喜欢者 | 黑猫正在偷偷看你 🐱</div>
 
   <script>
     function showPopup() {
       const popup = document.getElementById("popup");
+      popup.innerText = "你点的是爱心，我收到的是心动！";
       popup.style.display = "block";
       setTimeout(() => {
         popup.style.display = "none";
