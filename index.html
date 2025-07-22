@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center fixed;
+      background: url('https://images.pexels.com/photos/320014/pexels-photo-320014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center fixed;
       background-size: cover;
       font-family: "Comic Sans MS", "Arial", sans-serif;
       text-align: center;
@@ -56,8 +56,15 @@
       padding: 0.6em 0;
       border-radius: 12px;
       width: 90%;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 2em auto;
+      position: relative;
+    }
+
+    .footer img.cat-peek {
+      position: absolute;
+      bottom: -20px;
+      right: 10px;
+      width: 60px;
     }
 
     #popup {
@@ -104,8 +111,6 @@
     那我想说——<br/>
     我希望，能从现在开始，不只是喜欢你，<br/>
     而是，有机会让你成为我女朋友。<br/><br/>
-    最后一问：<br/>
-    你愿意，成为我女朋友吗？<br/>
     我保证比奶茶还黏，比猫还乖。🐱💛
   </p>
 
@@ -113,7 +118,10 @@
 
   <div id="popup">你戳我一下，我更爱你一分！❤️</div>
 
-  <div class="footer">🐾 页面制作 by 你的神秘喜欢者 | 黑猫正在偷偷看你 🐱</div>
+  <div class="footer">
+    🐾 页面制作 by 你的神秘喜欢者 | 黑猫正在偷偷看你 🐱
+    <img class="cat-peek" src="https://i.imgur.com/VKz0R0Z.png" alt="peeking cat"/>
+  </div>
 
   <script>
     function showPopup() {
