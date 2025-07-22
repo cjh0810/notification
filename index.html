@@ -1,71 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>小心思藏在这里 💌</title>
+  <title>💌 秘密小心思</title>
   <style>
     body {
-      background: linear-gradient(135deg, #ffe4f0, #ffecec);
-      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffe4f0;
+      font-family: "Comic Sans MS", "Arial", sans-serif;
       text-align: center;
+      overflow: hidden;
       color: #ff4081;
-      padding: 2em;
     }
-
     h1 {
-      font-size: 2.5em;
       margin-top: 1em;
-      animation: bounce 1s infinite alternate;
+      animation: bounce 1.2s infinite alternate;
     }
-
     p {
-      font-size: 1.2em;
-      margin: 1.2em auto;
-      line-height: 1.8em;
       max-width: 600px;
+      margin: 1em auto;
+      font-size: 1.2em;
+      line-height: 1.8em;
     }
-
+    img.gif {
+      width: 200px;
+      margin-top: 1em;
+    }
     .heart {
-      font-size: 2em;
+      font-size: 2.5em;
+      cursor: pointer;
       animation: heartbeat 1.5s infinite;
     }
-
-    .gif {
-      margin: 1em auto;
-      width: 200px;
+    .footer {
+      margin-top: 2em;
+      font-size: 0.8em;
+      color: #888;
     }
 
     @keyframes bounce {
       from { transform: translateY(0); }
       to { transform: translateY(-10px); }
     }
-
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
     }
 
-    .footer {
-      margin-top: 2em;
-      font-size: 0.9em;
-      color: #888;
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    #popup {
+      display: none;
+      background: rgba(255, 240, 250, 0.9);
+      border-radius: 12px;
+      padding: 1em 2em;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #d63384;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 0 10px pink;
     }
   </style>
 </head>
 <body>
-  <div class="heart">💖</div>
-  <h1>叮咚～ 有件小心思藏在这里！</h1>
-  <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWllMmJkcnB6bDJ5NmN5NzFpcnA4dGVkM2prb3J5ZzBicXBuOXczYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Zt481isNVuQI1l6/giphy.gif" alt="cute gif" />
+
+  <canvas id="hearts"></canvas>
+
+  <h1>叮咚～你已成功解锁一条隐藏告白！</h1>
+  <div class="heart" onclick="showPopup()">💖</div>
   <p>
     我喜欢你！不是开玩笑，不是演练，是实打实的喜欢！<br/>
     你的笑，是我心率失控的按钮；<br/>
     你的出现，是我社恐都能社牛的奇迹。<br/><br/>
     放心，我不黏人，但对你特别上心。<br/>
-    所以... 你愿意成为我的女朋友吗？<br/>
-    我保证比奶茶还黏，比猫还乖！ 🐱💛
+    考虑给我个机会吧～我不完美，但很会喜欢你！<br/><br/>
+    以上这段不是玩笑，是我认真写给你的小告白。<br/>
+    如果你刚好也对我有一点点喜欢，<br/>
+    那我想说——<br/>
+    我希望，能从现在开始，不只是喜欢你，<br/>
+    而是，有机会让你成为我女朋友。<br/><br/>
+    最后一问：你愿意，成为我女朋友吗？<br/>
+    我保证比奶茶还黏，比猫还乖。🐱💛
   </p>
 
-  <div class="footer">💌 页面制作 by cjh0810 | 猫猫与粉色小心思</div>
+  <img class="gif" src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="cute gif" />
+
+  <div id="popup">你戳我一下，我更爱你一分！❤️</div>
+  <div class="footer">💌 页面制作 by cjh0810 | 粉红心动工作室</div>
+
+  <script>
+    const canvas = document.getElementById("hearts");
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    let hearts = [];
+    for (let i = 0; i < 50; i++) {
+      hearts.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size: Math.random() * 20 + 10,
+        speed: Math.random() * 1 + 0.5,
+        alpha: Math.random() * 0.5 + 0.3,
+      });
+    }
+
+    function drawHearts() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,105,180,0.6)";
+      hearts.forEach(h => {
+        ctx.globalAlpha = h.alpha;
+        ctx.font = h.size + "px Arial";
+        ctx.fillText("♥", h.x, h.y);
+        h.y += h.speed;
+        if (h.y > h) h.y = -h.size;
+      });
+      requestAnimationFrame(drawHearts);
+    }
+    drawHearts();
+
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
